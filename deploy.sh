@@ -1,4 +1,6 @@
 #!/bin/sh
-GOOS=linux GOARCH=amd64 go build -o blog
-scp -r ./blog conf static views root@soy-ali:~/blog
-ssh root@soy-ali 'cd blog && ./run.sh >/dev/null 2>&1'
+
+godep go build -o blog
+docker stop blog && docker rm blog
+docker rmi ubuntu-blog && docker build -t ubuntu-blog .
+docker run -t --name blog -p 8080:8080 -d ubuntu-blog
