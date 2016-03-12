@@ -3,9 +3,16 @@
 	"GoVersion": "go1.5",
 	"Deps": [
 		{
-			"ImportPath": "github.com/astaxie/beego",
-			"Comment": "v1.5.0-9-gfb7314f",
-			"Rev": "fb7314f8ac86b83ccd34386518d97cf2363e2ae5"
+			"ImportPath": "github.com/gorilla/context",
+			"Rev": "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Rev": "acf3be1b335c8ce30b2c8d51300984666f0ceefa"
+		},
+		{
+			"ImportPath": "github.com/justinas/alice",
+			"Rev": "29a850317649fc021f42f80ec29552f9a3156ee9"
 		}
 	]
 }
