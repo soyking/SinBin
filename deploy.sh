@@ -1,5 +1,6 @@
 #!/bin/sh
 
+users
 godep go build -o blog
 cd static 
 cnpm install
