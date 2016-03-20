@@ -25,3 +25,5 @@ _testmain.go
 
 /blog
 .DS_Store
+node_modules
+static/dist/*

@@ -24,6 +24,7 @@ func logHandler(next http.Handler) http.Handler {
 func staticHandleFunc(w http.ResponseWriter, r *http.Request) {
 	path := strings.Replace(r.URL.Path, "public", "static", 1)[1:]
 	if _, err := os.Stat(path); err == nil {
+		w.Header().Set("Cache-Control", "max-age=10")
 		http.ServeFile(w, r, path)
 	} else {
 		http.NotFound(w, r)
