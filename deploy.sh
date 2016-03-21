@@ -3,7 +3,8 @@
 godep go build -o blog
 cd static 
 cnpm install
-NODE_ENV=prod webpack 
+npm run publish 
+rm -rf node_modules
 cd ../
 docker stop blog && docker rm blog
 docker rmi ubuntu-blog && docker build -t ubuntu-blog .
