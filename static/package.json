@@ -15,5 +15,9 @@
     "react-polymer-layout": "^0.2.17",
     "react-router": "^2.0.1",
     "style-loader": "^0.13.0"
+  },
+  "scripts": {
+    "publish": "NODE_ENV=prod webpack && cp html/index.html dist/index.html && cp -r img dist",
+    "watch": "cp html/index.html dist/index.html && cp -r img dist && webpack --watch"
   }
 }
