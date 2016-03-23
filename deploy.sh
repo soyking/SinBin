@@ -2,7 +2,7 @@
 
 godep go build -o blog
 cd static 
-cnpm install
+npm install
 npm run publish 
 rm -rf node_modules
 cd ../
