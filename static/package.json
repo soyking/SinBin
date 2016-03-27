@@ -17,7 +17,7 @@
     "style-loader": "^0.13.0"
   },
   "scripts": {
-    "cdn": "sed -i \"\" s/{{.date}}/$(date +%s)/g ./html/index-cdn.html",
+    "cdn": "sed -i s/{{.date}}/$(date +%s)/g ./html/index-cdn.html",
     "publish": "npm run cdn && cp html/index-cdn.html dist/index.html && cp -r img/ dist/",
     "watch": "cp html/index.html dist/ && cp -r img dist/ && webpack --watch"
   }
