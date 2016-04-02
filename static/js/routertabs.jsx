@@ -1,8 +1,9 @@
-import React from "react"
 import { Box, Item } from "react-polymer-layout"
-import { Link } from "react-router"
-import { Button } from "antd"
-import { Tabs } from 'antd'
+
+let React = window.React
+let { Link } = window.ReactRouter
+let { Button, Tabs } = window.antd
+
 const TabPane = Tabs.TabPane
 
 const RouterTabs = React.createClass({

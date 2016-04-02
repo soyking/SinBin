@@ -1,7 +1,8 @@
-import React from 'react'
 import { Box, Item } from "react-polymer-layout"
 import mockxhr from "mockxhr"
 import "./mockxhr"
+
+let React = window.React
 
 const ArticleList = React.createClass({
     getInitialState(){

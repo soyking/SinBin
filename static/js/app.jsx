@@ -1,12 +1,12 @@
-import ReactDOM from "react-dom"
-import React from "react"
-import { Router, Route, IndexRoute, hashHistory } from "react-router"
 import { Box } from "react-polymer-layout"
 import ArticleList from "./articleList"
 import MomentList from "./momentList"
 import RouterTabs from "./routertabs"
 import "../css/app.css"
-import 'antd/lib/index.css'
+
+let ReactDOM = window.ReactDOM
+let React = window.React
+let { Router, Route, IndexRoute, hashHistory } = window.ReactRouter
 
 const App = React.createClass({
     render() {

@@ -17,8 +17,9 @@
     "style-loader": "^0.13.0"
   },
   "scripts": {
-    "cdn": "sed s/{{.date}}/$(date +%s)/g ./html/index-cdn.html > ./html/index-dist.html",
-    "publish": "npm run cdn && mkdir dist && cp html/index-dist.html dist/index.html",
-    "watch": "cp html/index.html dist/ && cp -r img dist/ && webpack --watch"
+    "render-cdn": "sed s/{{.date}}/$(date +%s)/g ./html/index-cdn.html > ./html/index-dist.html",
+    "publish": "npm run render-cdn && mkdir dist && cp html/index-dist.html dist/index.html",
+    "watch": "cp html/index.html dist/ && webpack --watch",
+    "cdn": "NODE_ENV=prod webpack && ./qn-upload ./dist/bundle.js"
   }
 }
