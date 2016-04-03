@@ -1,8 +1,8 @@
-import { Box, Item } from "react-polymer-layout"
 import RouterTabs from "./routertabs"
 import mockxhr from "mockxhr"
 import "./mockxhr"
 
+let { Box, Item } = window.ReactLayout
 let React = window.React
 
 const MomentList = React.createClass({

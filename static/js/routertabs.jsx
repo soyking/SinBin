@@ -1,8 +1,7 @@
-import { Box, Item } from "react-polymer-layout"
-
 let React = window.React
 let { Link } = window.ReactRouter
 let { Button, Tabs } = window.antd
+let { Box, Item } = window.ReactLayout
 
 const TabPane = Tabs.TabPane
 

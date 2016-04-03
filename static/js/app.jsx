@@ -1,4 +1,3 @@
-import { Box } from "react-polymer-layout"
 import ArticleList from "./articleList"
 import MomentList from "./momentList"
 import RouterTabs from "./routertabs"
@@ -7,6 +6,7 @@ import "../css/app.css"
 let ReactDOM = window.ReactDOM
 let React = window.React
 let { Router, Route, IndexRoute, hashHistory } = window.ReactRouter
+let { Box } = window.ReactLayout
 
 const App = React.createClass({
     render() {
