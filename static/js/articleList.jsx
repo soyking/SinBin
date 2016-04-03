@@ -3,6 +3,7 @@ import mockxhr from "mockxhr"
 let React = window.React
 let { Box, Item } = window.ReactLayout
 let { Pagination } = window.antd
+let { Link } = window.ReactRouter
 
 const pageSize = 2
 
@@ -32,7 +33,7 @@ const ArticleList = React.createClass({
             let date = (new Date(d.date * 1000)).toLocaleDateString()
             list.push(
                 <Box key={d.id}>
-                    <strong style = {{ fontSize:14 }}>{d.title}</strong>
+                    <Link to={`/article/${d.id}`}><strong style = {{ fontSize:14 }}>{d.title}</strong></Link>
                     <div style={{ color:"#999", paddingLeft:15, paddingTop:2 }}>({date})</div>
                 </Box>
             )

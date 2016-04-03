@@ -1,11 +1,12 @@
 import ArticleList from "./articleList"
 import MomentList from "./momentList"
 import RouterTabs from "./routertabs"
+import Article from "./article"
 import "../css/app.css"
 
 let ReactDOM = window.ReactDOM
 let React = window.React
-let { Router, Route, IndexRoute, hashHistory } = window.ReactRouter
+let { Router, Route, IndexRoute, hashHistory, IndexRedirect } = window.ReactRouter
 let { Box } = window.ReactLayout
 
 const App = React.createClass({
@@ -23,11 +24,13 @@ const App = React.createClass({
     }
 });
 
-ReactDOM.render((
-   <Router history={hashHistory}>
+ReactDOM.render(
+    <Router history={hashHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={ArticleList} />
+            <IndexRedirect to="articles" />
+            <Route path="articles" component={ArticleList} />
             <Route path="short" component={MomentList}/>
+            <Route path="article/:id" component={Article}/>
         </Route>
     </Router>
-), document.querySelector(".app"));
+, document.querySelector(".app"));

@@ -20,6 +20,7 @@ const RouterTabs = React.createClass({
     },
 
     switchTab(key){
+        console.log("switch");
         window.location.hash = "#" + key
     },
 
@@ -38,7 +39,7 @@ const RouterTabs = React.createClass({
         }
 
         return(
-            <Tabs defaultActiveKey={currentLink} onChange={this.switchTab} style={{width:"100%"}}>
+            <Tabs defaultActiveKey={currentLink} onTabClick={this.switchTab} style={{width:"100%"}}>
                 {tabs}
             </Tabs>
         )
