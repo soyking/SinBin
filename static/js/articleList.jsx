@@ -2,10 +2,10 @@ import mockxhr from "mockxhr"
 
 let React = window.React
 let { Box, Item } = window.ReactLayout
-let { Pagination } = window.antd
+let { Pagination, Icon } = window.antd
 let { Link } = window.ReactRouter
 
-const pageSize = 2
+const pageSize = 10
 
 const ArticleList = React.createClass({
     getInitialState(){
@@ -32,9 +32,11 @@ const ArticleList = React.createClass({
         listData.forEach(d => {
             let date = (new Date(d.date * 1000)).toLocaleDateString()
             list.push(
-                <Box key={d.id}>
-                    <Link to={`/article/${d.id}`}><strong style = {{ fontSize:14 }}>{d.title}</strong></Link>
-                    <div style={{ color:"#999", paddingLeft:15, paddingTop:2 }}>({date})</div>
+                <Box justified key={d.id}>
+                    <Link to={`/article/${d.id}`}><Icon type="book" /><div style = {{ fontSize:16, paddingLeft:10, font:"bold", display:"inline" }}>{d.title}</div></Link>
+                    <Box center style={{ paddingLeft:10 }}>
+                        <Icon type="clock-circle" /><div style={{ color:"#999", paddingLeft:10 }}>{date}</div>
+                    </Box>
                 </Box>
             )
         })
@@ -42,9 +44,9 @@ const ArticleList = React.createClass({
         let page = this.state.page
 
         return(
-            <Box vertical startJustified style={{width:500}} >
+            <Box vertical startJustified style={{width:460, marginBottom:40 }} >
                 {list}
-                <Box endJustified >
+                <Box endJustified style={{ marginTop: 20}}>
                     <Pagination current={page} pageSize={pageSize} total={total} onChange={this.getArticleList}/>
                 </Box>
             </Box>

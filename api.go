@@ -3,9 +3,11 @@ package main
 import (
 	"blog/models"
 	"encoding/json"
+	"errors"
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +27,18 @@ func unmarshalRequest(r *http.Request, request interface{}) error {
 	return json.Unmarshal(body, request)
 }
 
+var code = os.Getenv("BLOG_CODE")
+var errAuth = errors.New("no rights")
+
+func auth(r *http.Request) bool {
+	return r.URL.Query().Get("code") == code
+}
+
 func publishArticle(r *http.Request) (interface{}, error) {
+	if !auth(r) {
+		return nil, errAuth
+	}
+
 	var request models.Article
 	if err := unmarshalRequest(r, &request); err != nil {
 		return nil, err
@@ -50,4 +63,29 @@ func getOneArticle(r *http.Request) (interface{}, error) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 	return models.GetOneArticle(id)
+}
+
+func publishMoment(r *http.Request) (interface{}, error) {
+	if !auth(r) {
+		return nil, errAuth
+	}
+
+	var request models.Moment
+	if err := unmarshalRequest(r, &request); err != nil {
+		return nil, err
+	} else {
+		return nil, request.Save()
+	}
+}
+
+func getMomentList(r *http.Request) (interface{}, error) {
+	var request struct {
+		Page int `json:"page" bson:"page"`
+		Size int `json:"size" bson:"size"`
+	}
+	if err := unmarshalRequest(r, &request); err != nil {
+		return nil, err
+	} else {
+		return models.GetMomentList(request.Page, request.Size)
+	}
 }

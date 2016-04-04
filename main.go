@@ -23,8 +23,10 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home).Methods("GET")
 	r.HandleFunc("/admin/article", apiJSONHandler(publishArticle)).Methods("POST")
+	r.HandleFunc("/admin/moment", apiJSONHandler(publishMoment)).Methods("POST")
 	r.HandleFunc("/api/article", apiJSONHandler(getArticleList)).Methods("POST")
 	r.HandleFunc("/api/article/{id}", apiJSONHandler(getOneArticle)).Methods("GET")
+	r.HandleFunc("/api/moment", apiJSONHandler(getMomentList)).Methods("POST")
 
 	http.HandleFunc("/public/dist/", staticHandleFunc)
 	http.Handle("/", alice.New(logHandler).Then(r))

@@ -14,8 +14,16 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	index := mgo.Index{Key: []string{"-date"}}
+	getArticleC().EnsureIndex(index)
+	getMomentC().EnsureIndex(index)
 }
 
 func getArticleC() *mgo.Collection {
 	return session.DB("blog").C("article")
+}
+
+func getMomentC() *mgo.Collection {
+	return session.DB("blog").C("moment")
 }
