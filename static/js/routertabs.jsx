@@ -20,7 +20,6 @@ const RouterTabs = React.createClass({
     },
 
     switchTab(key){
-        console.log("switch");
         window.location.hash = "#" + key
     },
 
