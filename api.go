@@ -20,6 +20,7 @@ func apiJSONHandler(fn func(*http.Request) (interface{}, error)) func(http.Respo
 	}
 }
 
+// path: /admin/article
 func publishArticle(r *http.Request) (interface{}, error) {
 	var request models.Article
 	if err := unmarshalRequest(r, &request); err != nil {
@@ -29,6 +30,7 @@ func publishArticle(r *http.Request) (interface{}, error) {
 	}
 }
 
+// path: /api/article
 func getArticleList(r *http.Request) (interface{}, error) {
 	var request struct {
 		Page int `json:"page" bson:"page"`
@@ -41,12 +43,14 @@ func getArticleList(r *http.Request) (interface{}, error) {
 	}
 }
 
+// path: /api/article/{id}
 func getOneArticle(r *http.Request) (interface{}, error) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 	return models.GetOneArticle(id)
 }
 
+// path: /admin/moment
 func publishMoment(r *http.Request) (interface{}, error) {
 	var request models.Moment
 	if err := unmarshalRequest(r, &request); err != nil {
@@ -56,6 +60,7 @@ func publishMoment(r *http.Request) (interface{}, error) {
 	}
 }
 
+// path: /api/moment
 func getMomentList(r *http.Request) (interface{}, error) {
 	var request struct {
 		Page int `json:"page" bson:"page"`
