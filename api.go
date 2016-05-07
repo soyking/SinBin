@@ -3,42 +3,24 @@ package main
 import (
 	"blog/models"
 	"encoding/json"
-	"errors"
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
-
-func home(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/dist/index.html")
-}
-
-func apiJSONHandler(fn func(*http.Request) (interface{}, error)) func(http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		b, _ := json.Marshal(buildCommon(fn(r)))
-		w.Write(b)
-	}
-}
 
 func unmarshalRequest(r *http.Request, request interface{}) error {
 	body, _ := ioutil.ReadAll(r.Body)
 	return json.Unmarshal(body, request)
 }
 
-var code = os.Getenv("BLOG_CODE")
-var errAuth = errors.New("no rights")
-
-func auth(r *http.Request) bool {
-	return r.URL.Query().Get("code") == code
+func apiJSONHandler(fn func(*http.Request) (interface{}, error)) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		data, err := fn(r)
+		writeResp(w, data, err)
+	}
 }
 
 func publishArticle(r *http.Request) (interface{}, error) {
-	if !auth(r) {
-		return nil, errAuth
-	}
-
 	var request models.Article
 	if err := unmarshalRequest(r, &request); err != nil {
 		return nil, err
@@ -66,10 +48,6 @@ func getOneArticle(r *http.Request) (interface{}, error) {
 }
 
 func publishMoment(r *http.Request) (interface{}, error) {
-	if !auth(r) {
-		return nil, errAuth
-	}
-
 	var request models.Moment
 	if err := unmarshalRequest(r, &request); err != nil {
 		return nil, err
