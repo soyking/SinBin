@@ -1,7 +1,7 @@
 package main
 
 import (
-	"blog/models"
+	"github.com/soyking/SinBin/models"
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"io/ioutil"

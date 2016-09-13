@@ -9,7 +9,8 @@
     "babel-preset-react": "^6.3.13",
     "css-loader": "^0.23.1",
     "mockxhr": "^0.2.3",
-    "style-loader": "^0.13.0"
+    "style-loader": "^0.13.0",
+    "webpack": "^1.13.2"
   },
   "scripts": {
     "render-time": "sed s/{{.date}}/$(date +%s)/g $3 > html/index-dist.html",
